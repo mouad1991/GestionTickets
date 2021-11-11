@@ -15,12 +15,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [
+Route::get('/', [
     HomeController::class, 'index'
 ])->name('home');
+
+
+Route::resource('tickets', App\Http\Controllers\ticketController::class);
+
+Route::post('comments', [App\Http\Controllers\commentController::class, 'store'])->name('comments.store');
